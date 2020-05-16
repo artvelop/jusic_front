@@ -1,7 +1,16 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, AppBar, Typography, Card, CardContent } from '@material-ui/core';
+import { Container, AppBar, Typography, Card, CardContent, Grid, Divider } from '@material-ui/core';
+import DateFnsUtils from '@date-io/date-fns';
+import { MuiPickersUtilsProvider, KeyboardDatePicker } from '@material-ui/pickers';
+import ChartBox from './components/ChartBox';
+import Header from './components/Header';
+import DateBox from './components/DateBox';
+import GenDataBox from './components/GenDataBox';
+import ForeignTradeBox from './components/ForeignTradeBox';
+import ExchangeRateBox from './components/ExchangeRateBox';
+import StockMarketBox from './components/StockMarketBox';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,32 +31,46 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     marginTop: theme.spacing(3),
     width: '100%',
-  }
+  },
+  dividerGen: {
+    marginTop: 8,
+    marginBottom: 8,
+  },
+  divider: {
+    marginTop: 16,
+    marginBottom: 8,
+  },
 }));
 
 const App = () => {
   const classes = useStyles();
 
   return (
-    <Box className={classes.root}>
-      <AppBar position="static" className={classes.header}>
-        <Typography variant="h6" className={classes.title}>
-          JUSIC
-        </Typography>
-      </AppBar>
-      <Container fixed>
-        <Card className={classes.card}>
-          <CardContent>
-            선택지
-          </CardContent>
-        </Card>
-        <Card className={classes.card}>
-          <CardContent>
-            그래프화면
-          </CardContent>
-        </Card>
-      </Container>
-    </Box>
+    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+      <Box className={classes.root}>
+        <Header title="주식예측 솔루션" />
+        <Container fixed>
+          <Card className={classes.card}>
+            <CardContent>
+              <DateBox />
+              <Divider className={classes.dividerGen} />
+              <GenDataBox />
+              <Divider className={classes.divider} />
+              <ForeignTradeBox />
+              <Divider className={classes.dividerGen} />
+              <ExchangeRateBox />
+              <Divider className={classes.dividerGen} />
+              <StockMarketBox />
+            </CardContent>
+          </Card>
+          <Card className={classes.card}>
+            <CardContent>
+              <ChartBox />
+            </CardContent>
+          </Card>
+        </Container>
+      </Box>
+    </MuiPickersUtilsProvider>
   );
 }
 
