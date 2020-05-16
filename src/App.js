@@ -15,8 +15,11 @@ import StockMarketBox from './components/StockMarketBox';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    height: '100vh',
+    height:'200vh',
     backgroundColor:'#333333',
+  },
+  container: {
+    marginBottom: 64,
   },
   header: {
     padding: 16,
@@ -49,7 +52,7 @@ const App = () => {
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
       <Box className={classes.root}>
         <Header title="주식예측 솔루션" />
-        <Container fixed>
+        <Container fixed className={classes.container}>
           <Card className={classes.card}>
             <CardContent>
               <DateBox />
