@@ -1,7 +1,7 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Grid, TextField, Checkbox, FormControlLabel} from '@material-ui/core';
+import { Typography, Grid, Checkbox, FormControlLabel} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   title: {
