@@ -1,0 +1,20 @@
+{
+  "nickname" : "j",
+  "companyName": "LG",
+  "companyCode" : "000660",
+  "toYear" : "2019",
+  "toMonth" : "01",
+  "toDay" : "01",
+  "agencyNetsales" : false,   //기관 순매매량 
+  "foreignNetsales" : true,   //외국인 순매매량 
+  "foreignSharesheld" : true,   //외국인 보유주수 
+  "usdkrw" : true,       //원달러
+  "jpykrw" : true,      //원엔 
+  "cnykrw" : true,       //원위안
+  "kospi" : true,     //코스피 체결가
+  "kosdaq" : true,    //코스닥 체결가
+  "dji" : true,      //다우산업 체결가
+  "nas" : true,      //나스닥
+  "shs" : true,      //상해
+  "nii" : true,   //니케이225
+}
