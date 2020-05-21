@@ -11,6 +11,11 @@ import GenDataBox from './components/GenDataBox';
 import ForeignTradeBox from './components/ForeignTradeBox';
 import ExchangeRateBox from './components/ExchangeRateBox';
 import StockMarketBox from './components/StockMarketBox';
+import {Provider} from 'react-redux';
+import rootReducer from './store/modules';
+import {createStore} from 'redux';
+
+const store = createStore(rootReducer);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -49,31 +54,33 @@ const App = () => {
   const classes = useStyles();
 
   return (
-    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <Box className={classes.root}>
-        <Header title="주식예측 솔루션" />
-        <Container fixed className={classes.container}>
-          <Card className={classes.card}>
-            <CardContent>
-              <DateBox />
-              <Divider className={classes.dividerGen} />
-              <GenDataBox />
-              <Divider className={classes.divider} />
-              <ForeignTradeBox />
-              <Divider className={classes.dividerGen} />
-              <ExchangeRateBox />
-              <Divider className={classes.dividerGen} />
-              <StockMarketBox />
-            </CardContent>
-          </Card>
-          <Card className={classes.card}>
-            <CardContent>
-              <ChartBox />
-            </CardContent>
-          </Card>
-        </Container>
-      </Box>
-    </MuiPickersUtilsProvider>
+    <Provider store={store}>
+      <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        <Box className={classes.root}>
+          <Header title="주식예측 솔루션" />
+          <Container fixed className={classes.container}>
+            <Card className={classes.card}>
+              <CardContent>
+                <DateBox />
+                <Divider className={classes.dividerGen} />
+                <GenDataBox />
+                <Divider className={classes.divider} />
+                <ForeignTradeBox />
+                <Divider className={classes.dividerGen} />
+                <ExchangeRateBox />
+                <Divider className={classes.dividerGen} />
+                <StockMarketBox />
+              </CardContent>
+            </Card>
+            <Card className={classes.card}>
+              <CardContent>
+                <ChartBox />
+              </CardContent>
+            </Card>
+          </Container>
+        </Box>
+      </MuiPickersUtilsProvider>
+    </Provider>
   );
 }
 
