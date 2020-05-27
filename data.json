@@ -18,6 +18,6 @@
   "shs" : false,      //상해
   "nii" : false,   //니케이225
   "separation" : true,
-  "RSI" : true,
-  "CCI" : true
+  "rsi" : true,
+  "cci" : true
 }

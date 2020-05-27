@@ -21,6 +21,9 @@ const initialState = {
   nas : false,      //나스닥
   shs : false,      //상해
   nii : false,   //니케이225
+  separation: false,
+  rsi : false,
+  cci : false,
 }
 
 
