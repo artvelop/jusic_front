@@ -28,7 +28,7 @@ const IndicatorsBox = () => {
               <Checkbox
                 name="이격도"
                 color="primary"
-                checked={kospi}
+                checked={separation}
                 onChange={() => handleChange('separation', !separation)}
               />
             }
@@ -43,7 +43,7 @@ const IndicatorsBox = () => {
               <Checkbox
                 name="rsi"
                 color="primary"
-                checked={kosdaq}
+                checked={rsi}
                 onChange={() => handleChange('rsi', !rsi)}
               />
             }
@@ -58,7 +58,7 @@ const IndicatorsBox = () => {
               <Checkbox
                 name="cci"
                 color="primary"
-                checked={dji}
+                checked={cci}
                 onChange={() => handleChange('cci', !cci)}
               />
             }
