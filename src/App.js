@@ -14,6 +14,7 @@ import StockMarketBox from './components/StockMarketBox';
 import {Provider} from 'react-redux';
 import rootReducer from './store/modules';
 import {createStore} from 'redux';
+import IndicatorsBox from './components/IndicatorsBox';
 
 const store = createStore(rootReducer);
 
@@ -70,6 +71,8 @@ const App = () => {
                 <ExchangeRateBox />
                 <Divider className={classes.dividerGen} />
                 <StockMarketBox />
+                <Divider className={classes.dividerGen} />
+                <IndicatorsBox />
               </CardContent>
             </Card>
             <Card className={classes.card}>
