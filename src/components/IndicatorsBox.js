@@ -96,6 +96,7 @@ const IndicatorsBox = () => {
           />
         </Box>
       </Grid>
+      <Grid item xs={2} justify="center"></Grid>
       <Grid item xs={2}>
         <Box display="flex" alignItems="center" height="100%">
           <FormControlLabel
