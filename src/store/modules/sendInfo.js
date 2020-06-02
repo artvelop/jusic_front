@@ -24,6 +24,12 @@ const initialState = {
   separation: false, // 이격도
   rsi : false,       // rsi
   cci : false,       // cci
+  ex1 : false,
+  ex2 : false,
+  ex3 : false,
+  ex4 : false,
+  ex5 : false,
+  ex6 : false,
 }
 
 
