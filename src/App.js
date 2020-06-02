@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Card, CardContent, Divider } from '@material-ui/core';
@@ -15,6 +15,7 @@ import {Provider} from 'react-redux';
 import rootReducer from './store/modules';
 import {createStore} from 'redux';
 import IndicatorsBox from './components/IndicatorsBox';
+import sendApi from './api/sendApi';
 
 const store = createStore(rootReducer);
 
@@ -53,6 +54,12 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
+
+  useEffect(() => {
+    sendApi
+      .getCompanyList({})
+      .then(res => console.log(res.data));
+  },[]);
 
   return (
     <Provider store={store}>
