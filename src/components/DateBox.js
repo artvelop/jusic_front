@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Grid} from '@material-ui/core';
@@ -12,6 +12,11 @@ const useStyles = makeStyles((theme) => ({
 
 const DateBox = () => {
   const classes = useStyles();
+  const [startDate, setStartDate] = useState(new Date());
+  const [endDate, setEndDate] = useState(new Date());
+
+  const changeStartDate = date => setStartDate(date);
+  const changeEndDate = date => setEndDate(date);
 
   return (
     <Grid container spacing={2}>
@@ -22,30 +27,34 @@ const DateBox = () => {
           </Typography>
         </Box>
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={4}>
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
           format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-inline"
-          label="Date picker inline"
+          label="start-date"
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
+          value={startDate}
+          onChange={changeStartDate}
         />
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={4}>
         <KeyboardDatePicker
           disableToolbar
           variant="inline"
           format="MM/dd/yyyy"
           margin="normal"
           id="date-picker-inline"
-          label="Date picker inline"
+          label="end-date"
           KeyboardButtonProps={{
             'aria-label': 'change date',
           }}
+          value={endDate}
+          onChange={changeEndDate}
         />
       </Grid>
     </Grid>

@@ -58,7 +58,9 @@ const App = () => {
   useEffect(() => {
     sendApi
       .getCompanyList({})
-      .then(res => console.log(res.data));
+      .then(async res => {
+        console.log(res.data);
+      });
   },[]);
 
   return (
