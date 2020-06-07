@@ -16,6 +16,7 @@ import rootReducer from './store/modules';
 import {createStore} from 'redux';
 import IndicatorsBox from './components/IndicatorsBox';
 import sendApi from './api/sendApi';
+import CompanyListBox from './components/CompanyListBox';
 
 const store = createStore(rootReducer);
 
@@ -55,14 +56,6 @@ const useStyles = makeStyles((theme) => ({
 const App = () => {
   const classes = useStyles();
 
-  useEffect(() => {
-    sendApi
-      .getCompanyList({})
-      .then(async res => {
-        console.log(res.data);
-      });
-  },[]);
-
   return (
     <Provider store={store}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
@@ -71,6 +64,8 @@ const App = () => {
           <Container fixed className={classes.container}>
             <Card className={classes.card}>
               <CardContent>
+                <CompanyListBox />
+                <Divider className={classes.dividerGen} />
                 <DateBox />
                 <Divider className={classes.dividerGen} />
                 <GenDataBox />
