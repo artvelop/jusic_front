@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     width: '100%',
     height: 308,
     justifyContent: 'center',
+  },
+  companyInfo: {
+    marginTop: 100,
   }
 }));
 
@@ -107,10 +110,10 @@ const CompanyListBox = () => {
           />
           <Card className={classes.paperStyle}>
             <CardContent>
-              <Typography variant="h4">회사명</Typography>
-              <Typography className={classes.title}>{companyName || '골라주세요'}</Typography>
-              <Typography variant="h4">회사코드</Typography>
-              <Typography>{companyCode || '골라주세요'}</Typography>
+              <div align="center" className={classes.companyInfo}>
+                <Typography>{companyName || '골라주세요'}</Typography>
+                <Typography>{companyCode || '골라주세요'}</Typography>
+              </div>
             </CardContent>
           </Card>
         </Grid>
