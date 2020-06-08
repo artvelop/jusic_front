@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
-import { Container, Card, CardContent, Divider } from '@material-ui/core';
+import { Container, Card, CardContent, Divider, Button } from '@material-ui/core';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
 import ChartBox from './components/ChartBox';
@@ -77,6 +77,9 @@ const App = () => {
                 <StockMarketBox />
                 <Divider className={classes.dividerGen} />
                 <IndicatorsBox />
+                <div align="right">
+                  <Button variant="contained" size="large" color="primary">분석하기</Button>
+                </div>
               </CardContent>
             </Card>
             <Card className={classes.card}>

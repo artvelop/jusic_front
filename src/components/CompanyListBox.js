@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import Box from '@material-ui/core/Box';
+import React, { useState, useCallback } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { TextField, Table, TableHead, TableRow, TableBody, Paper, TableCell, Typography, Grid, TablePagination } from '@material-ui/core';
+import { TextField, Table, TableHead, TableRow, TableBody, Paper, TableCell, Typography, Grid, Card, CardContent } from '@material-ui/core';
 import { data } from '../asset/code';
+import { useSelector, useDispatch } from 'react-redux';
+import * as createActions from '../store/modules/sendInfo';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   paperStyle: {
     width: '100%',
     height: 308,
+    justifyContent: 'center',
   }
 }));
 
@@ -28,8 +30,10 @@ const CompanyListBox = () => {
     page: 0,
     rowsPerPage: 828,
   });
+  const {companyName, companyCode} = useSelector(state => state.sendInfo);
   const [input, setInput] = useState('');
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   const columns = [
     { id: 'name', label: '회사명', minWidth: 50, align: 'left' },
@@ -37,6 +41,11 @@ const CompanyListBox = () => {
   ];
 
   const handleInputChange = e => setInput(e.target.value);
+
+  const handleChange = useCallback((name, code) => {
+    dispatch(createActions.setData('companyName', name));
+    dispatch(createActions.setData('companyCode', code));
+  }, [dispatch]);
 
   return (
     <div>
@@ -65,7 +74,7 @@ const CompanyListBox = () => {
                     {
                       data.filter(({name, code}) => name.includes(input)).slice(tableInfo.page * tableInfo.rowsPerPage, tableInfo.page * tableInfo.rowsPerPage + tableInfo.rowsPerPage).map((row) => {
                         return (
-                          <TableRow hover role="checkbox" tabIndex={-1} key={row.code}>
+                          <TableRow hover role="checkbox" tabIndex={-1} key={row.code} onClick={e => handleChange(row.name, row.code)}>
                             {
                               columns.map((column) => {
                                 const value = row[column.id];
@@ -96,9 +105,14 @@ const CompanyListBox = () => {
             id="searchInput"
             placeholder="회사명검색"
           />
-          <Paper className={classes.paperStyle}>
-            
-          </Paper>
+          <Card className={classes.paperStyle}>
+            <CardContent>
+              <Typography variant="h4">회사명</Typography>
+              <Typography className={classes.title}>{companyName || '골라주세요'}</Typography>
+              <Typography variant="h4">회사코드</Typography>
+              <Typography>{companyCode || '골라주세요'}</Typography>
+            </CardContent>
+          </Card>
         </Grid>
       </Grid>
     </div>
