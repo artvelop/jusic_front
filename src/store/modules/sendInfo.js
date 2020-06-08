@@ -6,9 +6,8 @@ const initialState = {
   nickname : '',
   companyName: '',
   companyCode : 0,
-  toYear : '',
-  toMonth : '',
-  toDay : '',
+  startDate: '0000-00-00',
+  endDate: '0000-00-00',
   agencyNetsales : false,   //기관 순매매량 
   foreignNetsales : false,   //외국인 순매매량 
   foreignSharesheld : false,   //외국인 보유주수 
