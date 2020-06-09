@@ -35,7 +35,7 @@ const data = [
   },
 ];
 
-const ChartBox = () => {
+const ChartBox = ({predData, realData, date}) => {
   const classes = useStyles();
 
   return (
@@ -43,15 +43,21 @@ const ChartBox = () => {
       <LineChart
         width={1200}
         height={500}
-        data={data}
+        data={date.map((o, idx) => {
+          return {
+            name: o,
+            예측종가: predData[idx],
+            실제종가: realData[idx],
+          };
+        })}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip />
         <Legend />
-        <Line type="monotone" dataKey="pv" stroke="#8884d8" activeDot={{ r: 8 }} />
-        <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
+        <Line type="monotone" dataKey="예측종가" stroke="#8884d8" activeDot={{ r: 8 }} />
+        <Line type="monotone" dataKey="실제종가" stroke="#82ca9d" />
       </LineChart>
     </Box>
   );

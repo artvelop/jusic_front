@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Card, CardContent, Divider, Button } from '@material-ui/core';
@@ -11,14 +11,11 @@ import GenDataBox from './components/GenDataBox';
 import ForeignTradeBox from './components/ForeignTradeBox';
 import ExchangeRateBox from './components/ExchangeRateBox';
 import StockMarketBox from './components/StockMarketBox';
-import {Provider} from 'react-redux';
-import rootReducer from './store/modules';
+import {Provider, useSelector} from 'react-redux';
 import {createStore} from 'redux';
 import IndicatorsBox from './components/IndicatorsBox';
 import sendApi from './api/sendApi';
 import CompanyListBox from './components/CompanyListBox';
-
-const store = createStore(rootReducer);
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -55,9 +52,21 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const classes = useStyles();
+  const sendData = useSelector(state => state.sendInfo);
+  const [result,setResult] = useState({
+    predicted_Close:[],
+    real_Close:[],
+    real_date:[]
+  });
+
+  const getResult = () => {
+    sendApi.getResult(sendData).then(res => {
+      setResult(res.data);
+      console.log(result);
+    })
+  }
 
   return (
-    <Provider store={store}>
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
         <Box className={classes.root}>
           <Header title="주식예측 솔루션" />
@@ -78,19 +87,22 @@ const App = () => {
                 <Divider className={classes.dividerGen} />
                 <IndicatorsBox />
                 <div align="right">
-                  <Button variant="contained" size="large" color="primary">분석하기</Button>
+                  <Button variant="contained" size="large" color="primary" onClick={getResult}>분석하기</Button>
                 </div>
               </CardContent>
             </Card>
             <Card className={classes.card}>
               <CardContent>
-                <ChartBox />
+                <ChartBox
+                  predData={result.predicted_Close}
+                  realData={result.real_Close}
+                  date={result.real_date}
+                />
               </CardContent>
             </Card>
           </Container>
         </Box>
       </MuiPickersUtilsProvider>
-    </Provider>
   );
 }
 
