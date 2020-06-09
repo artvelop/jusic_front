@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { Container, Card, CardContent, Divider, Button } from '@material-ui/core';
@@ -11,8 +11,7 @@ import GenDataBox from './components/GenDataBox';
 import ForeignTradeBox from './components/ForeignTradeBox';
 import ExchangeRateBox from './components/ExchangeRateBox';
 import StockMarketBox from './components/StockMarketBox';
-import {Provider, useSelector} from 'react-redux';
-import {createStore} from 'redux';
+import { useSelector } from 'react-redux';
 import IndicatorsBox from './components/IndicatorsBox';
 import sendApi from './api/sendApi';
 import CompanyListBox from './components/CompanyListBox';
@@ -59,12 +58,7 @@ const App = () => {
     real_date:[]
   });
 
-  const getResult = () => {
-    sendApi.getResult(sendData).then(res => {
-      setResult(res.data);
-      console.log(result);
-    })
-  }
+  const getResult = () => sendApi.getResult(sendData).then(res => setResult(res.data));
 
   return (
       <MuiPickersUtilsProvider utils={DateFnsUtils}>
